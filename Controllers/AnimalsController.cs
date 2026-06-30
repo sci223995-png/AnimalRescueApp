@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using AnimalRescueApp.Data; 
+﻿using AnimalRescueApp.Data; 
 using AnimalRescueApp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalRescueApp.Controllers
 {
@@ -26,13 +27,15 @@ namespace AnimalRescueApp.Controllers
 
             return View(animals.ToList());
         }
-
+        [Authorize]
         public IActionResult Create()
         {
+           
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(Animal animal, IFormFile imageFile)
         {
             if (imageFile != null && imageFile.Length > 0)

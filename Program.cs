@@ -1,13 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using AnimalRescueApp.Data; 
+using AnimalRescueApp.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDefaultIdentity<AnimalRescueApp.Data.ApplicationUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -21,10 +23,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication(); 
+app.UseAuthorization();  
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();

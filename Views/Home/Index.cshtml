@@ -1,8 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "الرئيسية";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-5" dir="rtl" style="text-align: right;">
+    <div class="row align-items-center p-5 bg-light rounded shadow-sm">
+
+        <div class="col-md-7">
+            <h1 class="display-4 fw-bold text-dark">منصة إنقاذ الحيوانات</h1>
+            <p class="lead text-muted my-4">
+                مرحباً بكم في تطبيقنا المخصص لتوثيق وإنقاذ الحيوانات الأليفة ومتابعة حالتها الصحية وتوفير قاعدة بيانات شاملة لإدارتها.
+            </p>
+
+            <div class="d-flex gap-3">
+                <a asp-controller="Animals" asp-action="Index" class="btn btn-primary btn-lg px-4">
+                    تصفح الحيوانات
+                </a>
+                <a asp-controller="Animals" asp-action="Create" class="btn btn-outline-secondary btn-lg px-4">
+                    إضافة حالة جديدة
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5 text-center">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=600&auto=format&fit=crop"
+                 class="img-fluid rounded shadow"
+                 style="max-height: 300px; object-fit: cover;">
+        </div>
+
+    </div>
 </div>
