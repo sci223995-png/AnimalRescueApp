@@ -1,0 +1,53 @@
+﻿@model AnimalRescueApp.Models.Animal
+
+@{
+    ViewData["Title"] = "تسجيل حيوان جديد";
+}
+
+<div class="container mt-5" dir="rtl" style="max-width: 600px; text-align: right;">
+    <div class="card shadow-sm border-0 p-4 bg-white rounded">
+        <h2 class="text-center text-primary mb-4">🐾 تسجيل حيوان تم إنقاذه</h2>
+        <hr />
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">اسم الحيوان:</label>
+                <input asp-for="Name" class="form-control" placeholder="مثال: لوسي، ريكس..." />
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">النوع (الفصيل):</label>
+                <input asp-for="Species" class="form-control" placeholder="مثال: قط، كلب..." />
+                <span asp-validation-for="Species" class="text-danger small"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">العمر التقريبي (بالسنوات):</label>
+                <input asp-for="Age" type="number" class="form-control" placeholder="أدخل العمر..." />
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">الحالة الصحية للحيوان:</label>
+                <input asp-for="HealthStatus" class="form-control" placeholder="مثال: ممتازة، يحتاج علاج..." />
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="form-label fw-bold">اختر صورة للحيوان:</label>
+                <input type="file" name="imageFile" class="form-control" accept="image/*" />
+            </div>
+
+            <div class="form-group d-grid gap-2">
+                <button type="submit" class="btn btn-success btn-lg fw-bold">حفظ بيانات الحيوان ✨</button>
+                <a asp-action="Index" class="btn btn-light border">العودة لقائمة الحيوانات</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
